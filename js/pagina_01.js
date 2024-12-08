@@ -1,9 +1,7 @@
 let alunos = []; // Array global para armazenar os dados dos alunos
 let alunoCount = 0;
 
-function abrirPagina() {
-    window.location.href = 'pagina_01.html';
-  }
+
 
 function adicionarAluno() {
   const nomeAluno = document.getElementsByName("nome_aluno")[0].value;

@@ -89,7 +89,7 @@
       
       <div id="status" style="color: red; margin-top: 10px;"></div>
       
-      <button onclick="abrirPagina()">home</button>
+      <button onclick="abrirPagina()">Home</button>
       <button onclick="enviarFormulario()">Enviar</button>
       <button onclick="fecharFormulario()">Cancelar</button>
     `;
@@ -160,8 +160,11 @@
       return { success: false, error: error.message };
     }
   }
+
+  function abrirPagina() {
+    window.location.href = 'pagina_01.html';
+  }
 </script>
-<script src="js/pagina_01.js"></script>
 
 </body>
 </html>
