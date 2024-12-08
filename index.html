@@ -112,8 +112,6 @@
 
     // Mensagem fixa a ser enviada
     const mensagem = `
-      Assunto: Envio de Formulário via FormuApp
-
       Olá,
 
       Este é um e-mail automático do Sistema de Solicitações FormuApp.
@@ -145,8 +143,8 @@
     const formData = new FormData();
     formData.append("message", mensagem); // Usar a mensagem fixa
     formData.append("attachment", arquivo);
-    formData.append("_next", "https://obrigado.com");
-    formData.append("_subject", "Novo Formulário Recebido");
+    formData.append("_next", "https://formuapp.netlify.app/");
+    formData.append("_subject", "Envio de Formulário via FormuApp");
     formData.append("_captcha", "false");
 
     try {
