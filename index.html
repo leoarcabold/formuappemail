@@ -33,7 +33,7 @@
       display: block;
       margin: 10px 0 5px;
     }
-    .popup input, .popup textarea, .popup button {
+    .popup input, .popup button {
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
@@ -75,17 +75,8 @@
 
     popup.innerHTML = `
       <h2>Enviar Formulário</h2>
-      <label for="nome">Nome Completo</label>
-      <input type="text" id="nome" placeholder="Digite seu nome completo">
-      
-      <label for="email">E-mail</label>
-      <input type="email" id="email" placeholder="Digite seu e-mail">
-      
-      <label for="mensagem">Mensagem</label>
-      <textarea id="mensagem" placeholder="Digite sua mensagem"></textarea>
-      
       <label for="arquivo">Anexo</label>
-      <input type="file" id="arquivo" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg">
+      <input type="file" id="arquivo" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
       
       <div id="status" style="color: red; margin-top: 10px;"></div>
       
@@ -108,22 +99,38 @@
 
   // Função para enviar o formulário
   async function enviarFormulario() {
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const mensagem = document.getElementById('mensagem').value;
     const arquivoInput = document.getElementById('arquivo');
     const statusDiv = document.getElementById('status');
 
-    // Verifica se todos os campos estão preenchidos
-    if (!nome || !email || !mensagem || arquivoInput.files.length === 0) {
-      statusDiv.textContent = 'Preencha todos os campos!';
+    // Verifica se o campo de arquivo está preenchido
+    if (arquivoInput.files.length === 0) {
+      statusDiv.textContent = 'Por favor, envie um arquivo!';
       return;
     }
 
     const arquivo = arquivoInput.files[0];
 
+    // Mensagem fixa a ser enviada
+    const mensagem = `
+      Assunto: Envio de Formulário via FormuApp
+
+      Olá,
+
+      Este é um e-mail automático do Sistema de Solicitações FormuApp.
+
+      Estamos enviando o formulário para sua verificação. Por favor, revise o documento em anexo e, se tudo estiver correto, sinta-se à vontade para imprimi-lo.
+
+      O FormuApp foi desenvolvido para facilitar a gestão de solicitações escolares no SENAI, garantindo agilidade e eficiência. Se você tiver qualquer dúvida ou precisar de assistência, não hesite em nos contatar.
+
+      Agradecemos pela sua colaboração.
+
+      Atenciosamente,
+
+      FormuApp - Sistema de Solicitações do SENAI
+    `;
+
     // Chama a função de envio
-    const resultado = await enviarFormularioComAnexo({ nome, email, mensagem, arquivo });
+    const resultado = await enviarFormularioComAnexo({ mensagem, arquivo });
 
     if (resultado.success) {
       alert('Formulário enviado com sucesso!');
@@ -133,12 +140,10 @@
     }
   }
 
-  // Função enviarFormularioComAnexo (do exemplo anterior)
-  async function enviarFormularioComAnexo({ nome, email, mensagem, arquivo }) {
+  // Função enviarFormularioComAnexo
+  async function enviarFormularioComAnexo({ mensagem, arquivo }) {
     const formData = new FormData();
-    formData.append("name", nome);
-    formData.append("email", email);
-    formData.append("message", mensagem);
+    formData.append("message", mensagem); // Usar a mensagem fixa
     formData.append("attachment", arquivo);
     formData.append("_next", "https://obrigado.com");
     formData.append("_subject", "Novo Formulário Recebido");
