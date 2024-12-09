@@ -86,7 +86,7 @@
       popup.innerHTML = `
       <h2>Enviar Formulário</h2>
       <label for="arquivo">Anexo</label>
-      <input type="file" id="arquivo" accept=".pdf,.doc,.docx,.jpg,.png,.jpeg" required>
+      <input type="file" id="arquivo" accept=".pdf" required>
       <div id="status" style="color: red; margin-top: 10px;"></div>
       <button onclick="enviarFormulario()">Enviar</button>
       <button onclick="fecharFormulario()">Cancelar</button>
@@ -126,6 +126,7 @@ O FormuApp foi desenvolvido para facilitar a gestão de solicitações escolares
 
 
 Atenciosamente,
+
 FormuSubimit - Sistema de Solicitações do SENAI`;
 
       const resultado = await enviarFormularioComAnexo({ mensagem: mensagemHTML, arquivo });
@@ -136,7 +137,7 @@ FormuSubimit - Sistema de Solicitações do SENAI`;
       } else {
         statusDiv.textContent = `Erro ao enviar: ${resultado.error}`;
       }
-    }
+    }F
 
     async function enviarFormularioComAnexo({ mensagem, arquivo }) {
       const formData = new FormData();
@@ -145,7 +146,6 @@ FormuSubimit - Sistema de Solicitações do SENAI`;
       formData.append("_next", "https://formuapp.netlify.app/");
       formData.append("_subject", "Envio de Formulário via FormSubimit");
       formData.append("_captcha", "false");
-      formData.append("_replyto", "leoarcabold@gmail.com"); // Alternativa ao _cc
       formData.append("_template", "raw");
 
       try {
