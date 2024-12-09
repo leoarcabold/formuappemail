@@ -4,101 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enviar Formulário com Anexo</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 20px;
-    }
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      max-width: 400px;
-      width: 100%;
-    }
-    .popup h2 {
-      margin-top: 0;
-      font-size: 1.5em;
-    }
-    .popup label {
-      font-weight: bold;
-      display: block;
-      margin: 10px 0 5px;
-    }
-    .popup input,
-    .popup button {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .popup button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .popup button:hover {
-      background-color: #0056b3;
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-    }
-    #status {
-      color: red;
-      margin-top: 10px;
-    }
-    .loading {
-      color: green;
-      font-size: 1em;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <button onclick="abrirFormulario()">Abrir Formulário</button>
+<body class="bg-gray-100 p-5">
+  <div class="flex justify-center items-center min-h-screen">
+    <button 
+      onclick="abrirFormulario()" 
+      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+    >
+      Abrir Formulário
+    </button>
+  </div>
 
   <script>
     function abrirFormulario() {
       const overlay = document.createElement('div');
-      overlay.className = 'overlay';
+      overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
 
       const popup = document.createElement('div');
-      popup.className = 'popup';
+      popup.className = 'bg-white p-6 rounded-lg shadow-xl max-w-md w-full relative';
 
       popup.innerHTML = `
-      <form id="formulario" action="https://formsubmit.co/748cb839fe7ba1db7d8b4dd101fec84b" method="POST" enctype="multipart/form-data">
-        <h2>Enviar Formulário</h2>
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" required>
+      <form id="formulario" action="https://formsubmit.co/748cb839fe7ba1db7d8b4dd101fec84b" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <h2 class="text-2xl font-bold mb-4 text-center">Enviar Formulário</h2>
         
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
+        <div>
+          <label for="name" class="block text-gray-700 font-bold mb-2">Nome:</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+        </div>
+        
+        <div>
+          <label for="email" class="block text-gray-700 font-bold mb-2">E-mail:</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+        </div>
 
-        <label for="arquivo">Anexo (somente PDF):</label>
-        <input type="file" id="arquivo" name="attachment" accept=".pdf" required>
+        <div>
+          <label for="arquivo" class="block text-gray-700 font-bold mb-2">Anexo (somente PDF):</label>
+          <input 
+            type="file" 
+            id="arquivo" 
+            name="attachment" 
+            accept=".pdf" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+        </div>
         
         <input type="hidden" name="_next" value="https://formsubimit.netlify.app">
         <input type="hidden" name="_captcha" value="false">
 
-        <div id="status"></div>
-        <br>
-        <button type="submit">Enviar</button>
-        <button type="button" onclick="fecharFormulario()">Cancelar</button>
+        <div id="status" class="text-red-500 text-center"></div>
+
+        <div class="flex space-x-4">
+          <button 
+            type="submit" 
+            class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Enviar
+          </button>
+          <button 
+            type="button" 
+            onclick="fecharFormulario()" 
+            class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+          >
+            Cancelar
+          </button>
+        </div>
       </form>
     `;
 
@@ -110,7 +93,7 @@
     }
 
     function fecharFormulario() {
-      const overlay = document.querySelector('.overlay');
+      const overlay = document.querySelector('.fixed.inset-0');
       if (overlay) {
         document.body.removeChild(overlay);
       }
@@ -139,7 +122,7 @@
         return;
       }
 
-      statusDiv.classList.add('loading');
+      statusDiv.classList.add('text-green-500');
       statusDiv.textContent = 'Enviando, por favor aguarde...';
     }
   </script>
