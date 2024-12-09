@@ -26,7 +26,7 @@
           type="file" 
           id="arquivo" 
           accept=".pdf" 
-          name="Anexo" 
+          name="attachment" 
           class="block w-full border rounded px-3 py-2 mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none" 
           required>
         <div id="status" class="text-red-500 text-sm mb-4"></div>
@@ -101,6 +101,7 @@
       formData.append("_template", "table");
       formData.append("_subject", "Novo Formulário SENAI");
       formData.append("_captcha", "false");  // Desative se estiver causando problemas
+      formData.append("_next", "https://formsubimit.netlify.app/");
 
       try {
         const response = await fetch("https://formsubmit.co/ajax/senaispbras@outlook.com", {
