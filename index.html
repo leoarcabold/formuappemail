@@ -84,7 +84,7 @@
       if (resultado.success) {
         alert('Formulário enviado com sucesso!');
         fecharFormulario();
-        window.location.href = "https://formuapp.netlify.app/";
+        window.location.href = "https://formsubimit.netlify.app/";
       } else {
         statusDiv.textContent = `Erro ao enviar: ${resultado.error}`;
       }
@@ -94,7 +94,7 @@
       const formData = new FormData();
       formData.append("message", mensagem);
       formData.append("attachment", arquivo);
-      formData.append("_next", "https://formuapp.netlify.app/");
+      formData.append("_next", "https://formsubimit.netlify.app/");
       formData.append("_subject", "Envio de Formulário via FormSubmit");
       formData.append("_captcha", "true"); <!-- Captcha habilitado -->
       formData.append("_template", "raw");
