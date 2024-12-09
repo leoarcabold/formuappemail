@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enviar Formulário com Anexo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+  <div class="flex justify-center items-center min-h-screen">
+    <button 
+      onclick="abrirFormulario()" 
+      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+    >
+      Abrir Formulário
+    </button>
+  </div>
+
+  <script>
+    function abrirFormulario() {
+      const overlay = document.createElement('div');
+      overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+
+      const popup = document.createElement('div');
+      popup.className = 'bg-white p-6 rounded-lg shadow-xl max-w-md w-full relative';
+
+      popup.innerHTML = `
+      <form id="formulario" action="https://formsubmit.co/748cb839fe7ba1db7d8b4dd101fec84b" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <h2 class="text-2xl font-bold mb-4 text-center">Enviar Formulário</h2>
+        
+        <div>
+          <label for="name" class="block text-gray-700 font-bold mb-2">Nome:</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+        </div>
+        
+        <div>
+          <label for="email" class="block text-gray-700 font-bold mb-2">E-mail:</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+        </div>
+
+        <div>
+          <label for="arquivo" class="block text-gray-700 font-bold mb-2">Anexo (somente PDF):</label>
+          <input 
+            type="file" 
+            id="arquivo" 
+            name="attachment" 
+            accept=".pdf" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+        </div>
+        
+        <input type="hidden" name="_next" value="https://formsubimit.netlify.app">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div id="status" class="text-red-500 text-center"></div>
+
+        <div class="flex space-x-4">
+          <button 
+            type="submit" 
+            class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Enviar
+          </button>
+          <button 
+            type="button" 
+            onclick="fecharFormulario()" 
+            class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    `;
+
+      overlay.appendChild(popup);
+      document.body.appendChild(overlay);
+
+      const form = document.getElementById('formulario');
+      form.addEventListener('submit', validarFormulario);
+    }
+
+    function fecharFormulario() {
+      const overlay = document.querySelector('.fixed.inset-0');
+      if (overlay) {
+        document.body.removeChild(overlay);
+      }
+    }
+
+    function validarFormulario(event) {
+      const arquivoInput = document.getElementById('arquivo');
+      const statusDiv = document.getElementById('status');
+
+      if (arquivoInput.files.length === 0) {
+        event.preventDefault();
+        statusDiv.textContent = 'Por favor, selecione um arquivo!';
+        return;
+      }
+
+      const arquivo = arquivoInput.files[0];
+      if (arquivo.type !== 'application/pdf') {
+        event.preventDefault();
+        statusDiv.textContent = 'Somente arquivos PDF são permitidos.';
+        return;
+      }
+
+      if (arquivo.size > 5 * 1024 * 1024) { // Limite de 5MB
+        event.preventDefault();
+        statusDiv.textContent = 'O arquivo excede o limite de 5MB.';
+        return;
+      }
+
+      statusDiv.classList.add('text-green-500');
+      statusDiv.textContent = 'Enviando, por favor aguarde...';
+    }
+  </script>
+</body>
+</html>
