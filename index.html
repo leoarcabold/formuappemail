@@ -110,25 +110,51 @@
 
     const arquivo = arquivoInput.files[0];
 
-    // Mensagem fixa a ser enviada
-    const mensagem = `
-      Olá,
-
-      Este é um e-mail automático do Sistema de Solicitações FormuApp.
-
-      Estamos enviando o formulário para sua verificação. Por favor, revise o documento em anexo e, se tudo estiver correto, sinta-se à vontade para imprimi-lo.
-
-      O FormuApp foi desenvolvido para facilitar a gestão de solicitações escolares no SENAI, garantindo agilidade e eficiência. Se você tiver qualquer dúvida ou precisar de assistência, não hesite em nos contatar.
-
-      Agradecemos pela sua colaboração.
-
-      Atenciosamente,
-
-      FormuApp - Sistema de Solicitações do SENAI
+    // HTML formatado com fonte Poppins
+    const mensagemHTML = `
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+          body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+          }
+          h1 {
+            font-size: 1.8em;
+            color: #007bff;
+          }
+          p {
+            margin: 10px 0;
+          }
+          .highlight {
+            font-weight: 600;
+            color: #0056b3;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Envio de Formulário - FormuApp</h1>
+        <p>Olá,</p>
+        <p>
+          Este é um e-mail automático do <span class="highlight">Sistema de Solicitações FormuApp</span>.
+        </p>
+        <p>
+          Estamos enviando o formulário para sua verificação. Por favor, revise o documento em anexo e, se tudo estiver correto, sinta-se à vontade para imprimi-lo.
+        </p>
+        <p>
+          O FormuApp foi desenvolvido para facilitar a gestão de solicitações escolares no SENAI, garantindo agilidade e eficiência. Se você tiver qualquer dúvida ou precisar de assistência, não hesite em nos contatar.
+        </p>
+        <p>Atenciosamente,</p>
+        <p class="highlight">FormuApp - Sistema de Solicitações do SENAI</p>
+      </body>
+      </html>
     `;
 
     // Chama a função de envio
-    const resultado = await enviarFormularioComAnexo({ mensagem, arquivo });
+    const resultado = await enviarFormularioComAnexo({ mensagem: mensagemHTML, arquivo });
 
     if (resultado.success) {
       alert('Formulário enviado com sucesso!');
@@ -141,7 +167,7 @@
   // Função enviarFormularioComAnexo
   async function enviarFormularioComAnexo({ mensagem, arquivo }) {
     const formData = new FormData();
-    formData.append("message", mensagem); // Usar a mensagem fixa
+    formData.append("message", mensagem); // Usar a mensagem HTML
     formData.append("attachment", arquivo);
     formData.append("_next", "https://formuapp.netlify.app/");
     formData.append("_subject", "Envio de Formulário via FormuApp");
@@ -164,6 +190,7 @@
     }
   }
 
+  // Função para abrir a página inicial
   function abrirPagina() {
     window.location.href = 'pagina_01.html';
   }
