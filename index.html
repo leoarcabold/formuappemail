@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,9 +73,7 @@
     }
   </style>
 </head>
-
 <body>
-
   <button onclick="abrirFormulario()">Abrir Formulário</button>
 
   <script>
@@ -88,14 +85,14 @@
       popup.className = 'popup';
 
       popup.innerHTML = `
-      <h2>Enviar Formulário</h2>
-      <label for="arquivo">Anexo (somente PDF)</label>
-      <input type="file" id="arquivo" accept=".pdf" name="Anexo" required>
-      <div id="status"></div>
-      <br>
-      <button onclick="enviarFormulario()">Enviar</button>
-      <button onclick="fecharFormulario()">Cancelar</button>
-    `;
+        <h2>Enviar Formulário</h2>
+        <label for="arquivo">Anexo (somente PDF)</label>
+        <input type="file" id="arquivo" accept=".pdf" name="Anexo" required>
+        <div id="status"></div>
+        <br>
+        <button onclick="enviarFormulario()">Enviar</button>
+        <button onclick="fecharFormulario()">Cancelar</button>
+      `;
 
       overlay.appendChild(popup);
       document.body.appendChild(overlay);
@@ -149,7 +146,7 @@ FormuSubimit - Sistema de Solicitações do SENAI`;
       const formData = new FormData();
       formData.append("message", mensagem);
       formData.append("attachment", arquivo);
-      formData.append("_next", "https://formsubimit.netlify.app/");
+      formData.append("_next", "https://formuapp.netlify.app/");
       formData.append("_subject", "Envio de Formulário via FormSubmit");
       formData.append("_captcha", "false");
       formData.append("_template", "raw");
@@ -171,7 +168,5 @@ FormuSubimit - Sistema de Solicitações do SENAI`;
       }
     }
   </script>
-
 </body>
-
 </html>
