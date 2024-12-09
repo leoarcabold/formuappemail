@@ -86,8 +86,9 @@
       popup.innerHTML = `
       <h2>Enviar Formulário</h2>
       <label for="arquivo">Anexo</label>
-      <input type="file" id="arquivo" accept=".pdf" required>
+      <input type="file" id="arquivo" accept=".pdf" name="Anexo" required>
       <div id="status" style="color: red; margin-top: 10px;"></div>
+      <br><br>
       <button onclick="enviarFormulario()">Enviar</button>
       <button onclick="fecharFormulario()">Cancelar</button>
     `;
