@@ -67,6 +67,11 @@
       background: rgba(0, 0, 0, 0.5);
       z-index: 999;
     }
+
+    #status {
+      color: red;
+      margin-top: 10px;
+    }
   </style>
 </head>
 
@@ -75,7 +80,6 @@
   <button onclick="abrirFormulario()">Abrir Formulário</button>
 
   <script>
-    // Função para abrir o formulário
     function abrirFormulario() {
       const overlay = document.createElement('div');
       overlay.className = 'overlay';
@@ -85,10 +89,10 @@
 
       popup.innerHTML = `
       <h2>Enviar Formulário</h2>
-      <label for="arquivo">Anexo</label>
+      <label for="arquivo">Anexo (somente PDF)</label>
       <input type="file" id="arquivo" accept=".pdf" name="Anexo" required>
-      <div id="status" style="color: red; margin-top: 10px;"></div>
-      <br><br>
+      <div id="status"></div>
+      <br>
       <button onclick="enviarFormulario()">Enviar</button>
       <button onclick="fecharFormulario()">Cancelar</button>
     `;
@@ -97,7 +101,6 @@
       document.body.appendChild(overlay);
     }
 
-    // Função para fechar o formulário
     function fecharFormulario() {
       const overlay = document.querySelector('.overlay');
       if (overlay) {
@@ -105,7 +108,6 @@
       }
     }
 
-    // Função para enviar o formulário
     async function enviarFormulario() {
       const arquivoInput = document.getElementById('arquivo');
       const statusDiv = document.getElementById('status');
@@ -116,8 +118,13 @@
       }
 
       const arquivo = arquivoInput.files[0];
+      if (arquivo.type !== 'application/pdf') {
+        statusDiv.textContent = 'Somente arquivos PDF são permitidos.';
+        return;
+      }
+
       const mensagemHTML = `
-  Olá,
+Olá,
 
 Este é um e-mail automático do Sistema de Solicitações FormuSubimit.
 
@@ -125,27 +132,25 @@ Estamos enviando o formulário para sua verificação. Por favor, revise o docum
 
 O FormuApp foi desenvolvido para facilitar a gestão de solicitações escolares no SENAI, garantindo agilidade e eficiência.
 
-
 Atenciosamente,
-
 FormuSubimit - Sistema de Solicitações do SENAI`;
 
       const resultado = await enviarFormularioComAnexo({ mensagem: mensagemHTML, arquivo });
 
       if (resultado.success) {
         alert('Formulário enviado com sucesso!');
-        fecharFormulario();
+        window.location.href = "https://formuapp.netlify.app/";
       } else {
         statusDiv.textContent = `Erro ao enviar: ${resultado.error}`;
       }
-    }F
+    }
 
     async function enviarFormularioComAnexo({ mensagem, arquivo }) {
       const formData = new FormData();
       formData.append("message", mensagem);
       formData.append("attachment", arquivo);
       formData.append("_next", "https://formuapp.netlify.app/");
-      formData.append("_subject", "Envio de Formulário via FormSubimit");
+      formData.append("_subject", "Envio de Formulário via FormSubmit");
       formData.append("_captcha", "false");
       formData.append("_template", "raw");
 
@@ -165,7 +170,6 @@ FormuSubimit - Sistema de Solicitações do SENAI`;
         return { success: false, error: error.message };
       }
     }
-
   </script>
 
 </body>
