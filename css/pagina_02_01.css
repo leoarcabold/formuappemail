@@ -1,0 +1,145 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 100px;
+}
+
+.footer div {
+  width: 30%;
+  text-align: center;
+}
+
+.footer div::before {
+  content: '';
+  display: block;
+  border-top: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.signature-section {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signature-line {
+  border-bottom: 1px solid black;
+  width: 200px;
+}
+
+.form-footer {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-left {
+  font-size: small;
+  text-align: right;
+  margin-top: 50px;
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.linha {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+#pdfButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#pdfButton:hover {
+  background-color: #2563eb;
+}
+
+/* Configurações de impressão */
+@media print {
+  #pdfButton {
+    display: none;
+  }
+
+  @page {
+    size: A4 portrait;
+    /* Formato paisagem */
+    margin: 15mm;
+  }
+}
+
+/* Estilo personalizado aplicado ao botão */
+#pdfButton {
+  background-color: #3b82f6;
+  /* Cor verde */
+  color: white;
+  /* Texto branco */
+  font-size: 1rem;
+  /* Tamanho da fonte */
+  font-weight: bold;
+  /* Texto em negrito */
+  padding: 1rem 1rem;
+  /* Espaçamento interno */
+  border-radius: 0.375rem;
+  /* Arredondamento */
+  border: none;
+  /* Sem borda */
+  cursor: pointer;
+  /* Cursor de ponteiro */
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  /* Transições suaves */
+}
+
+#pdfButton:hover {
+  background-color: #2563eb;
+  /* Cor verde mais escura no hover */
+  transform: scale(1.0);
+  /* Leve aumento no hover */
+}

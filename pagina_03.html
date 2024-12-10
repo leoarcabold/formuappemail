@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Mudança de Horário - SENAI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        #nome {
+            text-transform: capitalize;
+            /* Capitaliza a primeira letra de cada palavra */
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-100">
+    <!-- Cabeçalho -->
+    <header class="text-white" style="background-color: #0963A2;">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <div class="flex items-center">
+                <a href="index.html">
+                    <img src="img/logo_branco.png" alt="Logo SENAI" class="h-10">
+                </a>
+                <span class="ml-6 text-2xl font-bold">FormSubimit</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/SENAISP" class="hover:opacity-75" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com/senaisp" class="hover:opacity-75" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/senaisp/" class="hover:opacity-75" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/senai-sp/" class="hover:opacity-75" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Formulário -->
+<div class="max-w-5xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-8">
+    <h2 class="text-2xl font-bold mb-4 text-center">Acordo de Compensação</h2>
+
+    <form>
+        <!-- Seção 1: Dados do Professor -->
+        <section class="mb-8">
+            <h3 class="font-semibold text-lg mb-4">Dados do Professor</h3>
+            <div class="space-y-4">
+                <!-- Nome e Número de Identificação -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="nome" class="block text-sm font-medium text-gray-700">Nome do Professor:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required>
+                    </div>
+                    <div>
+                        <label for="numero-identificacao" class="block text-sm font-medium text-gray-700">NIF:</label>
+                        <input type="text" id="numero-identificacao" name="numero-identificacao"
+                            placeholder="Número de identificação do funcionário"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: Período de Trabalho -->
+        <section class="mb-8">
+            <h3 class="font-semibold text-lg mb-4">Período de Trabalho</h3>
+            <div class="space-y-4">
+                <!-- Data e Horário -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="data-trabalho" class="block text-sm font-medium text-gray-700">Data do Trabalho:</label>
+                        <input type="date" id="data-trabalho" name="data-trabalho"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required>
+                    </div>
+                    <div>
+                        <label for="hora-inicio" class="block text-sm font-medium text-gray-700">Hora Início:</label>
+                        <input type="time" id="hora-inicio" name="hora-inicio"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required>
+                    </div>
+                    <div>
+                        <label for="hora-fim" class="block text-sm font-medium text-gray-700">Hora Fim:</label>
+                        <input type="time" id="hora-fim" name="hora-fim"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            required>
+                    </div>
+                </div>
+
+                <!-- Data do Dia de Compensação -->
+                <div class="w-1/3">
+                    <label for="data-compensacao" class="block text-sm font-medium text-gray-700">Data do Dia de Compensação:</label>
+                    <input type="date" id="data-compensacao" name="data-compensacao"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        required>
+                </div>
+<br>
+                <h3 class="font-semibold text-lg mb-4">Dada de Preenchimento do Formulário</h3>
+
+                <!-- Data de Registro -->
+                <div class="w-1/3">
+                    <label for="data-de-registro" class="block text-sm font-medium text-gray-700">Data de Registro:</label>
+                    <input type="date" id="data-de-registro" name="data-de-registro"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        required>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botões -->
+       <button type="button" class="mt-4 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+       onclick="visualizarFormulario(event)">Visualizar</button>
+
+         <!-- Botão Enviar -->
+         <button type="button" class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600" onclick="abrirJanelaEmail()">Enviar por E-mail</button>
+    </form>
+</div>
+
+    <script src="js/pagina_01.js"></script>
+    <script src="js/pagina_03.js"></script>
+</body>
+
+</html>

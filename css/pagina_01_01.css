@@ -1,0 +1,140 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px 20px; /* Reduzir margens laterais para 30px */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate; /* Separate para usar border-spacing */
+  border-spacing: 0;
+  margin-bottom: 20px;
+  border: 1px solid black; /* Borda externa da tabela em preto */
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid black; /* Linhas pretas em todas as células */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 100px;
+}
+
+.footer div {
+  width: 30%;
+  text-align: center;
+}
+
+.footer div::before {
+  content: '';
+  display: block;
+  border-top: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.text-left {
+  font-size: small;
+  text-align: right;
+  margin-top: 50px;
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+#pdfButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#pdfButton:hover {
+  background-color: #2563eb;
+}
+
+/* Configurações de impressão */
+@media print {
+  #pdfButton {
+    display: none;
+  }
+
+  @page {
+    size: A4 landscape; /* Formato A4 paisagem */
+    margin: 10mm; /* Manter margens reduzidas */
+  }
+
+  /* Forçar conteúdo em uma única página */
+  body {
+    width: 297mm; /* Largura padrão A4 em paisagem */
+    margin: 0 30px; /* Reduzir margens laterais para 30px na impressão */
+    page-break-inside: avoid;
+  }
+
+  * {
+    page-break-inside: avoid;
+    page-break-after: auto;
+    page-break-before: auto;
+  }
+
+  /* Ajustar tamanho da fonte para garantir que tudo caiba */
+  body {
+    font-size: 10pt; /* Reduzir tamanho da fonte */
+  }
+
+  table {
+    font-size: 9pt; /* Fonte ainda menor para tabelas */
+  }
+
+  /* Remover margens e espaçamentos extras */
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  .footer {
+    margin-top: 10px;
+    padding-top: 50px;
+  }
+}
+
+/* Estilo do botão permanece o mesmo */
+#pdfButton {
+  background-color: #3b82f6;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 1rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#pdfButton:hover {
+  background-color: #2563eb;
+  transform: scale(1.0);
+}

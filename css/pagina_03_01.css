@@ -1,0 +1,143 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 40px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header img {
+  width: 100px;
+  height: auto;
+}
+
+.content {
+  margin: 20px;
+}
+
+.content p {
+  text-align: justify;
+}
+
+.signature-section,
+.signature-section-director {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.signature-section div,
+.signature-section-director div {
+  text-align: center;
+  width: 45%;
+}
+.signature-section .nome {
+  margin: 0; /* Remove margens padrão */
+  padding: 0; /* Remove preenchimento interno */
+  line-height: 1; /* Reduz o espaçamento entre linhas */
+  margin-bottom: -15px;
+}
+
+.signature-section .numero-identificacao {
+  margin: 0; /* Remove margens padrão */
+  padding: 0; /* Remove preenchimento interno */
+  line-height: 1; /* Reduz o espaçamento entre linhas */
+  margin-bottom: -15px;
+}
+.signature-section p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.signature-section-director {
+  display: block; /* Remove o layout flexbox */
+  text-align: left; /* Alinha todo o conteúdo à esquerda */
+  margin-top: 20px; /* Espaçamento acima */
+}
+
+.signature-section-director strong {
+  display: block; /* Garante que "Data" ocupe uma linha inteira */
+  margin-bottom: 10px; /* Espaçamento abaixo de "Data" */
+}
+
+.signature-section-director div {
+  margin-top: 10px; /* Espaçamento entre "Data" e o texto da assinatura */
+  text-align: left; /* Garante alinhamento à esquerda */
+}
+
+.signature-section-director p {
+  margin: 0; /* Remove margens padrão */
+  line-height: 1.5; /* Espaçamento entre linhas */
+  text-align: center; /* Alinha o texto explicitamente à esquerda */
+}
+
+.signature-section-director .nome {
+  margin: 0; /* Remove margens padrão */
+  margin-bottom: -5px; /* Ajusta o espaçamento inferior, deixando o nome mais próximo da linha */
+}
+
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.text-left {
+  font-size: small;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.linha {
+  font-size: 16px;
+}
+
+#pdfButton {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#pdfButton:hover {
+  background-color: #2563eb;
+  transform: scale(1.05); /* Leve aumento no hover */
+}
+
+/* Configurações de impressão */
+@media print {
+  #pdfButton {
+    display: none;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+}

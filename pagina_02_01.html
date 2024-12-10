@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário para Mudança de Horário - SENAI</title>
+    <link rel="stylesheet" href="css/pagina_02_01.css">
+</head>
+
+<body>
+    <div class="image-container">
+        <img src="img/logo.png" style="width: 150px; height: auto;">
+    </div>
+    <br>
+    <h2>Formulário Para Mudança de Horário</h2>
+
+
+    <p>Por necessidade de serviço, solicito a mudança de horário de trabalho abaixo relacionado do colaborador
+        <strong><span id="nomeColaborador">_________________</span></strong>, NIF: <strong><span
+                id="nif"></span></strong></p>
+
+    <p>
+        (<span id="periodoAPartir"></span>) a partir de: <strong><span id="dataAPartir"></span></strong><br>
+        (<span id="periodoSomente"></span>) somente no dia de: <strong><span id="dataSomente"></span></strong><br>
+        (<span id="periodoIntervalo"></span>) no período de: <strong><span id="dataInicio"></span></strong> a
+        <strong><span id="dataFim"></span></strong>
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Dia</th>
+                <th>Entrada</th>
+                <th>Saída</th>
+                <th>Entrada</th>
+                <th>Saída</th>
+            </tr>
+        </thead>
+        <tbody id="horariosTabela">
+            <!-- Linhas geradas dinamicamente -->
+        </tbody>
+    </table>
+
+    <!-- <div class="form-footer">
+        <div>
+            <p>SENAI - Serviço Nacional de Aprendizagem Industrial</p>
+            <p>Escola SENAI "Roberto Simonsen"</p>
+            <p>Rua Monsenhor Andrade, 298 - 03008-000 São Paulo – SP</p>
+            <p>Telefone: (11) 3322-5000 | Fax: 3322-5029</p>
+            <p>e-mail: senaibras@sp.senai.br</p>
+        </div>
+        <div>
+            FR-1.01-347 V1 (05/04/2007)
+        </div> -->
+    <br>
+
+        <div class="linha" id="dataAtual"><strong>Data: </strong> </div>
+
+    <div class="footer">
+        <div>
+            Assinatura Do Funcionário <span id="nomeDocente"></span>
+        </div>
+        <div>
+            Assinatura/Chefia Imediata <span></span>
+        </div>
+    </div>
+    </div>
+
+    <div id="dataAtual"></div>
+
+    <div class="footer">
+        <div>
+            Ciência Do Diretor <span></span>
+        </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="text-left">
+        FR – 1.01 – 347 – V1 (05/04/2007)
+    </div>
+
+    <button id="pdfButton" onclick="salvarOuImprimirPDF()">
+        Salvar em PDF
+    </button>
+
+    <script src="js/pagina_02_01.js"></script>
+
+</body>
+
+</html>
