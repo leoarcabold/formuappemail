@@ -259,7 +259,7 @@ async function enviarFormularioComAnexo({ nome, email, mensagem, arquivo }) {
   formData.append("attachment", arquivo);
   formData.append("_next", "https://obrigado.com");
   formData.append("_subject", "Novo Formulário Recebido");
-  formData.append("_captcha", "true");
+  formData.append("_captcha", "false");
 
   try {
     const response = await fetch("https://formsubmit.co/senaispbras@outlook.com", {
