@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enviar Formulário com Anexo</title>
+  <title>Formulário com Mensagem Padrão</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-5">
@@ -27,28 +27,6 @@
       popup.innerHTML = `
       <form id="formulario" action="https://formsubmit.co/748cb839fe7ba1db7d8b4dd101fec84b" method="POST" enctype="multipart/form-data" class="space-y-4">
         <h2 class="text-2xl font-bold mb-4 text-center">Enviar Formulário</h2>
-        
-        <div>
-          <label for="name" class="block text-gray-700 font-bold mb-2">Nome:</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-        </div>
-        
-        <div>
-          <label for="email" class="block text-gray-700 font-bold mb-2">E-mail:</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-        </div>
 
         <div>
           <label for="arquivo" class="block text-gray-700 font-bold mb-2">Anexo (somente PDF):</label>
@@ -62,10 +40,19 @@
           >
         </div>
         
+        <!-- Mensagem Padrão -->
+        <input type="hidden" name="message" value="Olá,
+
+Este é um e-mail automático do Sistema de Solicitações FormuSubmit.
+
+Estamos enviando o formulário para sua verificação. Por favor, revise o documento em anexo e, se tudo estiver correto, sinta-se à vontade para imprimi-lo.
+
+Atenciosamente,
+FormuSubmit - Sistema de Solicitações do SENAI">
+        
+        <input type="hidden" name="_subject" value="Novo Contato - Sistema de Solicitações FormuSubmit">
         <input type="hidden" name="_next" value="https://formsubimit.netlify.app">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="Envio de Formulário via FormSubmit">
-        <input type="hidden" name="_template" value="raw">
 
         <div id="status" class="text-red-500 text-center"></div>
 
