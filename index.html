@@ -3,78 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulário com Popup</title>
+  <title>Enviar E-mail com Anexo</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 p-5">
+<body class="bg-gray-100">
   <div class="flex justify-center items-center min-h-screen">
     <button 
-      onclick="abrirFormularioPopup()" 
+      onclick="abrirJanelaEmail()" 
       class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
     >
-      Abrir Formulário em Popup
+      Abrir Formulário
     </button>
   </div>
 
   <script>
-    function abrirFormularioPopup() {
-      // Definir dimensões e posição do popup
-      const largura = 500;
-      const altura = 600;
-      const esquerda = (window.screen.width / 2) - (largura / 2);
-      const topo = (window.screen.height / 2) - (altura / 2);
+    function abrirJanelaEmail() {
+      // Remove qualquer modal existente
+      const existingModal = document.querySelector('.fixed.inset-0');
+      if (existingModal) {
+        existingModal.remove();
+      }
 
-      // Opções para o popup
-      const opcoes = `
-        width=${largura},
-        height=${altura},
-        left=${esquerda},
-        top=${topo},
-        resizable=yes,
-        scrollbars=yes,
-        toolbar=no,
-        menubar=no,
-        location=no,
-        directories=no,
-        status=no
-      `;
-
-      // Criar HTML do formulário
-      const formularioHTML = `
-      <!DOCTYPE html>
-      <html lang="pt-BR">
-      <head>
-        <meta charset="UTF-8">
-        <title>Formulário de Envio</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-      </head>
-      <body class="bg-gray-100 p-5">
-        <div class="container mx-auto max-w-md">
-          <form 
-            action="https://formsubmit.co/748cb839fe7ba1db7d8b4dd101fec84b" 
-            method="POST" 
-            enctype="multipart/form-data" 
-            class="bg-white p-6 rounded-lg shadow-xl space-y-4"
-          >
-            <h2 class="text-2xl font-bold mb-4 text-center">Enviar Formulário</h2>
-
-            <div>
-              <label for="arquivo" class="block text-gray-700 font-bold mb-2">
-                Anexo (somente PDF):
-              </label>
+      const emailDialog = document.createElement("div");
+      emailDialog.innerHTML = `
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div class="bg-white rounded-lg p-6 w-96">
+            <h2 class="text-lg font-bold mb-4">Enviar E-mail com Anexo</h2>
+            <form 
+              id="emailForm"
+              action="https://formsubmit.co/748cb839fe7ba1db7d8b4dd101fec84b" 
+              method="POST" 
+              enctype="multipart/form-data"
+            >
               <input 
                 type="file" 
-                id="arquivo" 
-                name="attachment" 
-                accept=".pdf" 
+                id="attachment" 
+                name="attachment"
+                accept=".pdf"
                 required 
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="block w-full mb-4 border rounded-md p-2"
                 onchange="validarArquivo(this)"
               >
-            </div>
-            
-            <!-- Mensagem Padrão -->
-            <input type="hidden" name="message" value="Olá,
+              
+              <!-- Mensagem Padrão -->
+              <input type="hidden" name="message" value="Olá,
 
 Este é um e-mail automático do Sistema de Solicitações FormuSubmit.
 
@@ -82,63 +54,84 @@ Estamos enviando o formulário para sua verificação. Por favor, revise o docum
 
 Atenciosamente,
 FormuSubmit - Sistema de Solicitações do SENAI">
-            
-            <input type="hidden" name="_subject" value="Envio de Formulário via FormSubmit">
-            <input type="hidden" name="_next" value="https://formsubimit.netlify.app">
-            <input type="hidden" name="_captcha" value="false">
+              
+              <input type="hidden" name="_subject" value="Envio de Formulário via FormSubmit">
+              <input type="hidden" name="_next" value="https://formsubimit.netlify.app">
+              <input type="hidden" name="_captcha" value="false">
 
-            <div id="status" class="text-red-500 text-center"></div>
-
-            <div class="flex space-x-4">
-              <button 
-                type="submit" 
-                class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                Enviar
-              </button>
-              <button 
-                type="button" 
-                onclick="window.close()"
-                class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
-              >
-                Cancelar
-              </button>
-            </div>
-          </form>
+              <div id="status" class="mb-4 text-red-500 text-center"></div>
+              
+              <div class="flex justify-between">
+                <button 
+                  type="button"
+                  onclick="fecharJanelaEmail()" 
+                  class="bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-600"
+                >
+                  Cancelar
+                </button>
+                <button 
+                  type="submit" 
+                  class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+                  onclick="return enviarEmail(event)"
+                >
+                  Enviar
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <script>
-          function validarArquivo(input) {
-            const statusDiv = document.getElementById('status');
-
-            if (input.files.length === 0) {
-              statusDiv.textContent = 'Por favor, selecione um arquivo!';
-              return false;
-            }
-
-            const arquivo = input.files[0];
-            if (arquivo.type !== 'application/pdf') {
-              statusDiv.textContent = 'Somente arquivos PDF são permitidos.';
-              return false;
-            }
-
-            if (arquivo.size > 5 * 1024 * 1024) { // Limite de 5MB
-              statusDiv.textContent = 'O arquivo excede o limite de 5MB.';
-              return false;
-            }
-
-            statusDiv.textContent = '';
-            return true;
-          }
-        <\/script>
-      </body>
-      </html>
       `;
+      document.body.appendChild(emailDialog);
+    }
 
-      // Abrir popup com o formulário
-      const popup = window.open('', 'FormularioPopup', opcoes);
-      popup.document.write(formularioHTML);
-      popup.document.close();
+    function validarArquivo(input) {
+      const statusDiv = document.getElementById('status');
+
+      // Limpar status anterior
+      statusDiv.textContent = '';
+
+      if (input.files.length === 0) {
+        statusDiv.textContent = 'Por favor, selecione um arquivo!';
+        return false;
+      }
+
+      const arquivo = input.files[0];
+      if (arquivo.type !== 'application/pdf') {
+        statusDiv.textContent = 'Somente arquivos PDF são permitidos.';
+        return false;
+      }
+
+      if (arquivo.size > 5 * 1024 * 1024) { // Limite de 5MB
+        statusDiv.textContent = 'O arquivo excede o limite de 5MB.';
+        return false;
+      }
+
+      return true;
+    }
+
+    function enviarEmail(event) {
+      const arquivoInput = document.getElementById('attachment');
+      const statusDiv = document.getElementById('status');
+
+      // Validar arquivo
+      if (!validarArquivo(arquivoInput)) {
+        event.preventDefault();
+        return false;
+      }
+
+      // Mostrar mensagem de envio
+      statusDiv.classList.remove('text-red-500');
+      statusDiv.classList.add('text-green-500');
+      statusDiv.textContent = 'Enviando, por favor aguarde...';
+
+      return true;
+    }
+
+    function fecharJanelaEmail() {
+      const modal = document.querySelector('.fixed.inset-0');
+      if (modal) {
+        modal.remove();
+      }
     }
   </script>
 </body>
