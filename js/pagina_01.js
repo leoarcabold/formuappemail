@@ -180,7 +180,7 @@ function formatarDataBR(dataISO) {
 }
 
 
-
+/*
 // ENVIO DE EMAIL PELO FORM
 
 // Função para abrir o formulário
@@ -257,7 +257,7 @@ async function enviarFormularioComAnexo({ nome, email, mensagem, arquivo }) {
   formData.append("email", email);
   formData.append("message", mensagem);
   formData.append("attachment", arquivo);
-  formData.append("_next", "https://obrigado.com");
+  formData.append("_next", "https://formsubimit.netlify.app");
   formData.append("_subject", "Novo Formulário Recebido");
   formData.append("_captcha", "false");
 
@@ -277,7 +277,7 @@ async function enviarFormularioComAnexo({ nome, email, mensagem, arquivo }) {
     return { success: false, error: error.message };
   }
 }
-
+*/
 
 // Janela popup
 function abrirJanelaEmail() {
