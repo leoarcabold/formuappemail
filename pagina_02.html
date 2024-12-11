@@ -156,11 +156,15 @@
         <input type="date" id="data" name="data" class="w-full border border-gray-300 rounded-md p-2" required>
       </div>
 
-      <!-- Botões -->
-      <div class="flex justify-start space-x-4">
-        <button type="button" class="mt-4 bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
-          onclick="salvarDados()">Visualizar</button>
-      </div>
+            <!-- Botões -->
+            <div class="flex justify-start space-x-2">
+              <button type="button" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+                onclick="salvarDados()">Visualizar</button>
+      
+              <!-- Botão Enviar -->
+              <button type="button" class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
+                onclick="abrirJanelaEmail()">Enviar por E-mail</button>
+            </div>
     </form>
   </main>
   <!-- <button type="button" class="mt-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
