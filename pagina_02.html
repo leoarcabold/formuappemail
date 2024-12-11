@@ -45,20 +45,22 @@
     <h2 class="text-2xl font-bold mb-4 text-center">Formulário de Mudança de Horário</h2>
 
     <form id="formularioMudancaHorario" class="space-y-6">
-    <!-- Nome do colaborador e NIF -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <label class="col-span-2 block text-lg font-bold mb-2">Dados do Professor</label>
-  <div>
-    <label for="nomeColaborador" class="block text-sm font-medium text-gray-700">Nome do Professor:</label>
-    <input type="text" id="nomeColaborador" name="nomeColaborador" 
-           class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"  placeholder="Digite seu nome completo" required>
-  </div>
-  <div>
-    <label for="nif" class="block text-sm font-medium text-gray-700">NIF:</label>
-    <input type="text" id="nif" name="nif" 
-           class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"  placeholder="Número de identificação do funcionário" required>
-  </div>
-</div>
+      <!-- Nome do colaborador e NIF -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="col-span-2 block text-lg font-bold mb-2">Dados do Professor</label>
+        <div>
+          <label for="nomeColaborador" class="block text-sm font-medium text-gray-700">Nome do Professor:</label>
+          <input type="text" id="nomeColaborador" name="nomeColaborador"
+            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"
+            placeholder="Digite seu nome completo" required>
+        </div>
+        <div>
+          <label for="nif" class="block text-sm font-medium text-gray-700">NIF:</label>
+          <input type="text" id="nif" name="nif"
+            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-blue-300"
+            placeholder="Número de identificação do funcionário" required>
+        </div>
+      </div>
 
       <!-- Período -->
       <fieldset>
@@ -156,21 +158,23 @@
         <input type="date" id="data" name="data" class="w-full border border-gray-300 rounded-md p-2" required>
       </div>
 
-            <!-- Botões -->
-            <div class="flex justify-start space-x-2">
-              <button type="button" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
-                onclick="salvarDados()">Visualizar</button>
-      
-              <!-- Botão Enviar -->
-              <button type="button" class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
-                onclick="abrirJanelaEmail()">Enviar por E-mail</button>
-            </div>
+      <!-- Botões -->
+      <div class="flex justify-start space-x-2">
+        <button type="button" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+          onclick="salvarDados()">Visualizar</button>
+
+        <!-- Botão Enviar -->
+        <button type="button" class="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
+          onclick="abrirJanelaEmail()">Enviar por E-mail</button>
+      </div>
     </form>
   </main>
   <!-- <button type="button" class="mt-4 bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
     onclick="salvarDados()">Salvar e Continuar</button> -->
 
-    <script src="js/pagina_02.js"></script>
+  <script src="js/pagina_01.js"></script>
+  <script src="js/pagina_02.js"></script>
+
 
 </body>
 
