@@ -57,6 +57,19 @@ function aplicarEstiloBotao() {
 
 function formatarDataBR(dataISO) {
     if (!dataISO) return '';
+    
+    // Dividir a string no formato "YYYY-MM-DD"
+    const [ano, mes, dia] = dataISO.split('-');
+    
+    // Retornar a data no formato DD/MM/AAAA
+    return `${dia}/${mes}/${ano}`;
+}
+
+
+/*
+
+function formatarDataBR(dataISO) {
+    if (!dataISO) return '';
     const data = new Date(dataISO);
     
     // Dia com zero à esquerda se necessário
@@ -71,3 +84,4 @@ function formatarDataBR(dataISO) {
     // Formato DD/MM/AAAA
     return `${dia}/${mes}/${ano}`;
 }
+*/
